@@ -328,3 +328,15 @@ footer {
   .agent-row { grid-template-columns: 1fr; }
   .footer { flex-direction: column; }
 }
+.linkedin {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.linkedin:hover {
+  text-decoration: underline;
+}
