@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Learning Semantics</title>
     <meta name="description" content="Learn about Learning Semantics — our mission, approach, and commitment to accountable AI.">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236366f1'/><circle cx='50' cy='50' r='20' fill='%23f0f0f5'/></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --bg: #0a0a0f;
@@ -26,6 +28,21 @@
             --radius: 12px;
             --radius-sm: 8px;
             --max-width: 1000px;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg-elevated: #ffffff;
+            --bg-card: #f5f5f7;
+            --border: #e5e5ea;
+            --text-primary: #111118;
+            --text-secondary: #6b6b78;
+            --text-muted: #a0a0a8;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-glow: rgba(79, 70, 229, 0.12);
+            --success: #16a34a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,7 +55,52 @@
             color: var(--text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
         }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover { border-color: var(--accent); }
+
+        .theme-toggle-knob {
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .theme-toggle-knob svg {
+            width: 10px;
+            height: 10px;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .theme-toggle-knob .moon-icon { position: absolute; opacity: 1; }
+        .theme-toggle-knob .sun-icon { position: absolute; opacity: 0; }
+
+        [data-theme="light"] .theme-toggle-knob { transform: translateX(20px); }
+        [data-theme="light"] .theme-toggle-knob .moon-icon { opacity: 0; }
+        [data-theme="light"] .theme-toggle-knob .sun-icon { opacity: 1; }
 
         /* Nav */
         nav {
@@ -50,7 +112,10 @@
             background: rgba(10, 10, 15, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
+            transition: var(--transition);
         }
+
+        [data-theme="light"] nav { background: rgba(250, 250, 250, 0.85); }
 
         .nav-container {
             max-width: var(--max-width);
@@ -496,6 +561,7 @@
             .location-box { padding: 2rem 1.5rem; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -512,6 +578,17 @@
                 <a href="/privacy.html">Privacy</a>
                 <a href="/terms.html">Terms</a>
                 <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <div class="theme-toggle-knob">
+                        <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                        </svg>
+                        <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </div>
+                </button>
             </div>
         </div>
     </nav>
@@ -532,11 +609,11 @@
                 <div class="mission-text fade-in">
                     <h2>Why we exist</h2>
                     <p>As AI systems move from recommendation engines to autonomous execution, the gap between what AI does and what humans can explain is growing. Organizations deploying AI agents face a critical challenge: how to harness AI's power while maintaining accountability.</p>
-                    <p>Learning Semantics was founded to solve this. We build infrastructure that embeds governance into AI-agent systems from the ground up — not as an afterthought, but as a core architectural principle.</p>
+                    <p>Learning Semantics was founded to solve this. We build infrastructure that embeds governance into AI-agent systems from the ground up &mdash; not as an afterthought, but as a core architectural principle.</p>
                     <p>Our approach ensures that AI performs the complex reasoning and execution work, while humans retain semantic authority: the power to define intent, approve outcomes, and remain accountable for decisions.</p>
                 </div>
                 <div class="mission-visual fade-in">
-                    <div class="icon">🎯</div>
+                    <div class="icon">&#127919;</div>
                     <p>"AI performs the work. Humans retain the authority."</p>
                 </div>
             </div>
@@ -551,11 +628,11 @@
                 <p>A team of engineers, researchers, and operators with deep experience in AI systems, governance, and regulated industries.</p>
             </div>
             <div class="story-box fade-in">
-                <p>Learning Semantics was founded by a team that has <strong>built AI systems at scale</strong> — and seen firsthand what happens when governance is an afterthought. We've worked inside organizations where AI decisions carried real consequences, where "the model said so" wasn't an acceptable answer, and where regulators demanded explanations that the system couldn't provide.</p>
-                
+                <p>Learning Semantics was founded by a team that has <strong>built AI systems at scale</strong> &mdash; and seen firsthand what happens when governance is an afterthought. We've worked inside organizations where AI decisions carried real consequences, where "the model said so" wasn't an acceptable answer, and where regulators demanded explanations that the system couldn't provide.</p>
+
                 <p>We started this company to solve a problem we lived: <strong>how to make AI-agent systems powerful enough to execute complex work, while keeping humans in control of what matters.</strong></p>
-                
-                <p>Today, we're a small, focused team based in Toronto, building infrastructure we believe the next generation of AI-native companies will need — not as a feature, but as a foundation.</p>
+
+                <p>Today, we're a small, focused team based in Toronto, building infrastructure we believe the next generation of AI-native companies will need &mdash; not as a feature, but as a foundation.</p>
             </div>
         </div>
     </section>
@@ -569,32 +646,32 @@
             </div>
             <div class="values-grid">
                 <div class="value-card fade-in">
-                    <div class="icon">🔍</div>
+                    <div class="icon">&#128269;</div>
                     <h3>Transparency First</h3>
                     <p>Every decision, every agent action, every approval is logged and auditable. If you can't explain it, you can't govern it.</p>
                 </div>
                 <div class="value-card fade-in">
-                    <div class="icon">⚖️</div>
+                    <div class="icon">&#9878;&#65039;</div>
                     <h3>Human Authority</h3>
                     <p>Humans define intent and retain final approval. AI executes within constraints. The hierarchy is clear and enforced.</p>
                 </div>
                 <div class="value-card fade-in">
-                    <div class="icon">🏗️</div>
+                    <div class="icon">&#127959;&#65039;</div>
                     <h3>Governance by Design</h3>
-                    <p>Oversight, risk management, and auditability are embedded into the architecture — not bolted on later.</p>
+                    <p>Oversight, risk management, and auditability are embedded into the architecture &mdash; not bolted on later.</p>
                 </div>
                 <div class="value-card fade-in">
-                    <div class="icon">🛡️</div>
+                    <div class="icon">&#128737;&#65039;</div>
                     <h3>Accountability</h3>
                     <p>Clear chains of responsibility. Immutable records. When something matters, there is always a human who is accountable.</p>
                 </div>
                 <div class="value-card fade-in">
-                    <div class="icon">🔧</div>
+                    <div class="icon">&#128295;</div>
                     <h3>Pragmatic Engineering</h3>
-                    <p>We build systems that work in the real world — for regulated industries, complex organizations, and high-stakes decisions.</p>
+                    <p>We build systems that work in the real world &mdash; for regulated industries, complex organizations, and high-stakes decisions.</p>
                 </div>
                 <div class="value-card fade-in">
-                    <div class="icon">🇨🇦</div>
+                    <div class="icon">&#127464;&#127462;</div>
                     <h3>Canadian Roots</h3>
                     <p>Aligned with Canadian AI governance expectations. We believe responsible AI development is a competitive advantage.</p>
                 </div>
@@ -610,7 +687,7 @@
                 <p>Building from Canada, serving the world.</p>
             </div>
             <div class="location-box fade-in">
-                <div class="icon">📍</div>
+                <div class="icon">&#128205;</div>
                 <h3>Toronto, Ontario, Canada</h3>
                 <p>Our headquarters is in Toronto, where we work alongside Canada's leading AI research community and within the framework of emerging national AI governance standards.</p>
             </div>
@@ -662,12 +739,39 @@
                 <a href="#" aria-label="LinkedIn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                
+                <a href="#" aria-label="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Theme Toggle
+        (function() {
+            const toggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+            if (savedTheme) {
+                html.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersLight) {
+                html.setAttribute('data-theme', 'light');
+            }
+
+            toggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        })();
+
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
