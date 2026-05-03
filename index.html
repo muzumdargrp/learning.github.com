@@ -979,7 +979,6 @@
             transform: translateY(0);
         }
     </style>
-<base target="_blank">
 </head>
 <body>
 
@@ -1401,5 +1400,20 @@
             });
         });
     </script>
+
+    <!-- Force same-tab navigation for all internal links -->
+    <script>
+        document.querySelectorAll('a').forEach(function(link) {
+            link.removeAttribute('target');
+            link.addEventListener('click', function(e) {
+                // Prevent any default new-tab behavior
+                if (link.getAttribute('target') === '_blank') {
+                    e.preventDefault();
+                    window.location.href = link.href;
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
