@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom SVG favicon with your accent color -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236366f1'/></svg>">
+    
     <style>
         :root {
             --bg: #0a0a0f;
@@ -253,6 +252,49 @@
             font-style: italic;
         }
 
+        /* Who We Are */
+        .who-section {
+            background: var(--bg-elevated);
+        }
+
+        .story-box {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem;
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            border-radius: var(--radius) var(--radius) 0 0;
+            opacity: 0.6;
+        }
+
+        .story-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.0625rem;
+            line-height: 1.75;
+        }
+
+        .story-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-box strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         /* Values */
         .values-grid {
             display: grid;
@@ -296,46 +338,6 @@
             color: var(--text-secondary);
             font-size: 0.9375rem;
             line-height: 1.6;
-        }
-
-        /* Team */
-        .team-section {
-            background: var(--bg-elevated);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-member {
-            text-align: center;
-        }
-
-        .team-avatar {
-            width: 96px;
-            height: 96px;
-            background: var(--bg-card);
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--text-muted);
-        }
-
-        .team-member h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .team-member p {
-            color: var(--text-muted);
-            font-size: 0.875rem;
         }
 
         /* Location */
@@ -484,6 +486,8 @@
 
             section { padding: 3rem 1.5rem; }
 
+            .story-box { padding: 2rem 1.5rem; }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -539,6 +543,23 @@
         </div>
     </section>
 
+    <!-- Who We Are -->
+    <section class="who-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Who We Are</h2>
+                <p>A team of engineers, researchers, and operators with deep experience in AI systems, governance, and regulated industries.</p>
+            </div>
+            <div class="story-box fade-in">
+                <p>Learning Semantics was founded by a team that has <strong>built AI systems at scale</strong> — and seen firsthand what happens when governance is an afterthought. We've worked inside organizations where AI decisions carried real consequences, where "the model said so" wasn't an acceptable answer, and where regulators demanded explanations that the system couldn't provide.</p>
+                
+                <p>We started this company to solve a problem we lived: <strong>how to make AI-agent systems powerful enough to execute complex work, while keeping humans in control of what matters.</strong></p>
+                
+                <p>Today, we're a small, focused team based in Toronto, building infrastructure we believe the next generation of AI-native companies will need — not as a feature, but as a foundation.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Values -->
     <section>
         <div class="container">
@@ -576,38 +597,6 @@
                     <div class="icon">🇨🇦</div>
                     <h3>Canadian Roots</h3>
                     <p>Aligned with Canadian AI governance expectations. We believe responsible AI development is a competitive advantage.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team -->
-    <section class="team-section">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Our Team</h2>
-                <p>Engineers, researchers, and operators building the future of accountable AI.</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-member fade-in">
-                    <div class="team-avatar">👤</div>
-                    <h4>Founder Name</h4>
-                    <p>CEO & Co-Founder</p>
-                </div>
-                <div class="team-member fade-in">
-                    <div class="team-avatar">👤</div>
-                    <h4>Founder Name</h4>
-                    <p>CTO & Co-Founder</p>
-                </div>
-                <div class="team-member fade-in">
-                    <div class="team-avatar">👤</div>
-                    <h4>Team Member</h4>
-                    <p>Head of Engineering</p>
-                </div>
-                <div class="team-member fade-in">
-                    <div class="team-avatar">👤</div>
-                    <h4>Team Member</h4>
-                    <p>Head of Research</p>
                 </div>
             </div>
         </div>
