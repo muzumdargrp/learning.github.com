@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Semantics | AI-Native Governance Infrastructure</title>
     <meta name="description" content="Learning Semantics builds governed AI-agent systems where AI performs core reasoning and execution, while humans retain semantic authority, accountability, and control.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236366f1'/><circle cx='50' cy='50' r='20' fill='%23f0f0f5'/></svg>">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Learning Semantics | AI-Native Governance Infrastructure">
     <meta property="og:description" content="Governed AI-agent systems for accountable organizations.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learningsemantics.com">
-    
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236366f1'/><circle cx='50' cy='50' r='20' fill='%23f0f0f5'/></svg>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,10 +25,12 @@
             --bg: #0a0a0f;
             --bg-elevated: #12121a;
             --bg-card: #1a1a24;
+            --bg-input: #0a0a0f;
             --border: #2a2a3a;
             --text-primary: #f0f0f5;
             --text-secondary: #a0a0b0;
             --text-muted: #6a6a7a;
+            --text-placeholder: #6a6a7a;
             --accent: #6366f1;
             --accent-hover: #818cf8;
             --accent-glow: rgba(99, 102, 241, 0.15);
@@ -35,6 +40,29 @@
             --radius: 12px;
             --radius-sm: 8px;
             --max-width: 1200px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg-elevated: #ffffff;
+            --bg-card: #f5f5f7;
+            --bg-input: #ffffff;
+            --border: #e5e5ea;
+            --text-primary: #111118;
+            --text-secondary: #6b6b78;
+            --text-muted: #a0a0a8;
+            --text-placeholder: #a0a0a8;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --accent-glow: rgba(79, 70, 229, 0.12);
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         * {
@@ -53,6 +81,68 @@
             color: var(--text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            padding: 2px;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
+
+        .theme-toggle-knob {
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .theme-toggle-knob svg {
+            width: 10px;
+            height: 10px;
+            color: white;
+            transition: opacity 0.2s;
+        }
+
+        .theme-toggle-knob .moon-icon {
+            position: absolute;
+            opacity: 1;
+        }
+
+        .theme-toggle-knob .sun-icon {
+            position: absolute;
+            opacity: 0;
+        }
+
+        [data-theme="light"] .theme-toggle-knob {
+            transform: translateX(20px);
+        }
+
+        [data-theme="light"] .theme-toggle-knob .moon-icon {
+            opacity: 0;
+        }
+
+        [data-theme="light"] .theme-toggle-knob .sun-icon {
+            opacity: 1;
         }
 
         /* Navigation */
@@ -65,6 +155,11 @@
             background: rgba(10, 10, 15, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(250, 250, 250, 0.85);
         }
 
         .nav-container {
@@ -523,6 +618,59 @@
             margin-bottom: 2rem;
         }
 
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9375rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-note {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .form-note a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .form-note a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
@@ -637,58 +785,8 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    text-align: left;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 0.9375rem;
-    transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--text-muted);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-.form-note {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-}
-
-.form-note a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.form-note a:hover {
-    text-decoration: underline;
-}
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -704,13 +802,24 @@
                 <a href="#architecture">Architecture</a>
                 <a href="#governance">Governance</a>
                 <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <div class="theme-toggle-knob">
+                        <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                        </svg>
+                        <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    </div>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
-        <div class="badge">AI-Native • Agent-Driven • Human-Governed</div>
+        <div class="badge">AI-Native &bull; Agent-Driven &bull; Human-Governed</div>
         <h1>AI-native intelligence infrastructure for accountable systems</h1>
         <p class="hero-subtitle">
             Build governed AI-agent systems where AI performs the core reasoning and execution work, while humans retain semantic authority, accountability, and control.
@@ -755,19 +864,19 @@
             </div>
             <div class="platform-grid">
                 <div class="platform-card fade-in">
-                    <div class="icon">⚡</div>
+                    <div class="icon">&#9889;</div>
                     <h3>Agent-Based Execution</h3>
                     <p>Specialized AI agents plan, generate, review, and refine complex outputs under explicit constraints. Each agent has a scoped responsibility and operates within defined guardrails.</p>
                 </div>
                 <div class="platform-card fade-in">
-                    <div class="icon">🎯</div>
+                    <div class="icon">&#127919;</div>
                     <h3>Human Semantic Authority</h3>
                     <p>Humans define intent, approve outcomes, and remain accountable for decisions and external use. The system enforces human oversight at critical decision points.</p>
                 </div>
                 <div class="platform-card fade-in">
-                    <div class="icon">🔒</div>
+                    <div class="icon">&#128274;</div>
                     <h3>Governance by Design</h3>
-                    <p>Prompt versioning, audit logs, reviewer gates, and approval records are embedded into the system—not bolted on as an afterthought.</p>
+                    <p>Prompt versioning, audit logs, reviewer gates, and approval records are embedded into the system&mdash;not bolted on as an afterthought.</p>
                 </div>
             </div>
         </div>
@@ -832,22 +941,25 @@
                     <div class="check"></div>
                     <span>Versioned prompt registry</span>
                 </div>
-                
                 <div class="governance-item fade-in">
                     <div class="check"></div>
                     <span>Agent run logging</span>
                 </div>
-                
+                <div class="governance-item fade-in">
+                    <div class="check"></div>
+                    <span>Reviewer blocking controls</span>
+                </div>
                 <div class="governance-item fade-in">
                     <div class="check"></div>
                     <span>Human approval records</span>
                 </div>
-                
                 <div class="governance-item fade-in">
                     <div class="check"></div>
                     <span>Immutable audit trail</span>
                 </div>
-                
+                <div class="governance-item fade-in">
+                    <div class="check"></div>
+                    <span>Policy constraint enforcement</span>
                 </div>
             </div>
         </div>
@@ -858,39 +970,40 @@
         <div class="container">
             <div class="quote-section fade-in">
                 <blockquote>
-                    AI-native systems place AI agents at the core of execution, not at the edge of workflows — while ensuring humans retain authority, responsibility, and control.
+                    AI-native systems place AI agents at the core of execution, not at the edge of workflows &mdash; while ensuring humans retain authority, responsibility, and control.
                 </blockquote>
-                <p class="quote-author">— Learning Semantics Design Principle</p>
+                <p class="quote-author">&mdash; Learning Semantics Design Principle</p>
             </div>
         </div>
     </section>
 
     <!-- CTA -->
-<section id="contact" class="cta-section">
-    <div class="container">
-        <div class="cta-box fade-in">
-            <h2>Ready to govern your AI systems?</h2>
-            <p>Get in touch to schedule a demo or discuss your governance needs.</p>
-            
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Work email" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
-                </div>
-                <input type="text" name="_gotcha" style="display:none">
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                    Send Message
-                </button>
-            </form>
-            <p class="form-note">Or email us directly at <a href="mailto:hello@learningsemantics.com">hello@learningsemantics.com</a></p>
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <h2>Ready to govern your AI systems?</h2>
+                <p>Get in touch to schedule a demo or discuss your governance needs.</p>
+
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Work email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <input type="text" name="_gotcha" style="display:none">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        Send Message
+                    </button>
+                </form>
+                <p class="form-note">Or email us directly at <a href="mailto:hello@learningsemantics.com">hello@learningsemantics.com</a></p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
@@ -909,8 +1022,9 @@
             </div>
             <div class="footer-col">
                 <h4>Company</h4>
-                <a href="#contact">Contact</a>
                 <a href="/about.html">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Careers</a>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
@@ -924,11 +1038,40 @@
                 <a href="#" aria-label="LinkedIn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
+                <a href="#" aria-label="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                </a>
+                <a href="#" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Theme Toggle
+        (function() {
+            const toggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            // Check for saved preference or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+            if (savedTheme) {
+                html.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersLight) {
+                html.setAttribute('data-theme', 'light');
+            }
+
+            toggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        })();
+
         // Scroll fade-in animation
         const observerOptions = {
             threshold: 0.1,
